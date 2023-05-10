@@ -43,6 +43,69 @@ Install Service Provider Config
 php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="config"
 ```
 
+Configurasi phuser di file `.env` dengan menggunakan `ID, KEY, SECRET, HOST` sembarang saja, `PORT=6001` dan `SCHEME=http`
+```
+PUSHER_APP_ID=testwebsocket
+PUSHER_APP_KEY=DNndkshs
+PUSHER_APP_SECRET=123
+PUSHER_HOST=localhost
+PUSHER_PORT=6001
+PUSHER_SCHEME=http
+PUSHER_APP_CLUSTER=mt1
+```
+
+Install Phuser
+```
+composer require pusher/pusher-php-server 
+```
+
+Atur `BROADCAST_DRIVER` di dalam file `.env`
+```
+BROADCAST_DRIVER=pusher
+```
+Ini adalah konten default dari file konfigurasi yang akan dipublikasikan sebagai `config/websocket.php`:
+```php
+'apps' => [
+   [
+     'id' => env('PUSHER_APP_ID'),
+     'name' => env('APP_NAME'),
+     'key' => env('PUSHER_APP_KEY'),
+     'secret' => env('PUSHER_APP_SECRET'),
+     'enable_client_messages' => false,
+     'enable_statistics' => true,
+   ],
+],
+```
+Ini adalah konten default dari file konfigurasi yang ada di `config/broadcasting.php`
+```
+'pusher' => [
+       'driver' => 'pusher',
+       'key' => env('PUSHER_APP_KEY'),
+       'secret' => env('PUSHER_APP_SECRET'),
+       'app_id' => env('PUSHER_APP_ID'),
+       'options' => [
+          'host' => env('PUSHER_HOST') ?: 'api-'.env('PUSHER_APP_CLUSTER', 'mt1').'.pusher.com',
+          'port' => env('PUSHER_PORT', 443),
+          'scheme' => env('PUSHER_SCHEME', 'https'),
+          'encrypted' => true,
+          'useTLS' => env('PUSHER_SCHEME', 'https') === 'https',
+       ],
+      'client_options' => [
+      // Guzzle client options: https://docs.guzzlephp.org/en/stable/request-options.html
+   ],
+],
+```
+
+## Debug Websocket
+Route default untuk debug websokect `/laravel-websockets`
+```
+http://127.0.0.1:8000/laravel-websockets
+```
+
+
+
+
+
 
 
 
