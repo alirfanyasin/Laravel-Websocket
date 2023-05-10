@@ -44,7 +44,7 @@ php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsSe
 ```
 
 Configurasi phuser di file `.env` dengan menggunakan `ID, KEY, SECRET, HOST` sembarang saja, `PORT=6001` dan `SCHEME=http`
-```
+```php
 PUSHER_APP_ID=testwebsocket
 PUSHER_APP_KEY=DNndkshs
 PUSHER_APP_SECRET=123
@@ -77,7 +77,7 @@ Ini adalah konten default dari file konfigurasi yang akan dipublikasikan sebagai
 ],
 ```
 Ini adalah konten default dari file konfigurasi yang ada di `config/broadcasting.php`
-```
+```php
 'pusher' => [
        'driver' => 'pusher',
        'key' => env('PUSHER_APP_KEY'),
