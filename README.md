@@ -25,7 +25,7 @@ Install Service Provider Migration
 php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
 ```
 Buat database di PhpMyAdmin, Konfigurasi file `.env` untuk mengubah nama databsenya
-```
+```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
